@@ -20,6 +20,6 @@ services:
     environment:
       DB_USER: postgres
       DB_PASSWORD: postgres
-      DB_URL: jdbc:postgresql://course_pg_17:5433/postgres
+      DB_URL: jdbc:postgresql://course_pg_17:5432/postgres
     depends_on:
       - course_pg_17

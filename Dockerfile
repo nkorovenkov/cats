@@ -10,7 +10,7 @@ COPY src ./src
 
 RUN mvn package -DskipTests
 
-FROM eclipse-temurin:22-jre-alpine
+FROM eclipse-temurin:17
 
 WORKDIR /app
 
@@ -19,5 +19,3 @@ COPY --from=builder /app/target/*.jar ./app.jar
 ENTRYPOINT ["java", "-jar", "./app.jar"]
 
 EXPOSE 8080
-
-
