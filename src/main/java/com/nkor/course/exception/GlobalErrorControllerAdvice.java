@@ -18,7 +18,7 @@ public class GlobalErrorControllerAdvice {
      */
     @ExceptionHandler(HttpCodeException.class)
     public AbstractBaseResponseMessage<String> handleGlobalExceptions(HttpCodeException ex) {
-        log.error(String.format("%d: %s", ex.getHttpCode().getStatusCode(), ex.getMessage()));
+        log.error("{}: {}", ex.getHttpCode().getStatusCode(), ex.getMessage());
 
         return new FailureResponseMessage<>(false, ex.getHttpCode(), ex.getMessage());
     }
