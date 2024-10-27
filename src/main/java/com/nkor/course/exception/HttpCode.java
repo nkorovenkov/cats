@@ -1,4 +1,4 @@
-package com.nkor.course.http;
+package com.nkor.course.exception;
 
 import com.fasterxml.jackson.annotation.JsonValue;
 

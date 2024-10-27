@@ -1,4 +1,4 @@
-package com.nkor.course.http;
+package com.nkor.course.exception;
 
 import lombok.Getter;
 

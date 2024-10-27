@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -20,31 +21,32 @@ import java.util.List;
 @Slf4j
 @RestController
 @RequiredArgsConstructor
+@RequestMapping("cat")
 public class CatController {
     private final CatService catService;
 
-    @GetMapping("/api/all")
+    @GetMapping("/all")
     public List<CatDto> getAll() {
         return catService.getAllDto();
     }
 
     @Operation(summary = "Создает нового котика и кладет в бд")
-    @PostMapping("/api/create")
+    @PostMapping("/create")
     public CatDto create(@RequestBody CatDto catDto) {
        return catService.create(catDto);
     }
 
-    @GetMapping("/api/getById/{id}")
+    @GetMapping("/getById/{id}")
     public CatDto getById(@PathVariable Long id) {
         return catService.getById(id);
     }
 
-    @DeleteMapping("/api/delete/{id}")
+    @DeleteMapping("/delete/{id}")
     public CatDto delete(@PathVariable Long id) {
         return catService.deleteById(id);
     }
 
-    @PutMapping("/api/update/{id}")
+    @PutMapping("/update/{id}")
     public CatDto update(@PathVariable Long id, @RequestBody CatDto catDto) {
        return catService.update(id, catDto);
     }

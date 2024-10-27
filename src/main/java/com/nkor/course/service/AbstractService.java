@@ -1,8 +1,8 @@
 package com.nkor.course.service;
 
 import com.nkor.course.entity.AbstractEntity;
-import com.nkor.course.http.HttpCode;
-import com.nkor.course.http.HttpCodeException;
+import com.nkor.course.exception.HttpCode;
+import com.nkor.course.exception.HttpCodeException;
 import com.nkor.course.repository.CommonRepository;
 
 import java.util.List;
