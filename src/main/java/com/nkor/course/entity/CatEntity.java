@@ -8,7 +8,9 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
+@ToString
 @Getter
 @Setter
 @Entity
@@ -24,13 +26,4 @@ public class CatEntity extends AbstractEntity{
     private int age;
     @Column(name = "mass")
     private int weight;
-
-    public CatEntity(String name, int age, int weight) {
-        this.name = name;
-        this.age = age;
-        this.weight = weight;
-    }
-
-    public CatEntity() {
-    }
 }
