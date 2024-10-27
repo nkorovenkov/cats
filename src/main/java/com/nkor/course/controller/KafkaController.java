@@ -1,6 +1,5 @@
 package com.nkor.course.controller;
 
-import com.nkor.course.entity.CatEntity;
 import com.nkor.course.kafka.KafkaProducer;
 import com.nkor.course.service.CatService;
 import org.springframework.web.bind.annotation.PostMapping;
