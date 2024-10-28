@@ -1,9 +1,9 @@
 version: "3.9"
 services:
-  course_pg_17:
+  postgres:
     image: postgres
     restart: always
-    container_name: course_pg_17
+    container_name: postgres
     ports:
       - "5433:5432"
     environment:
@@ -20,6 +20,49 @@ services:
     environment:
       DB_USER: postgres
       DB_PASSWORD: postgres
-      DB_URL: jdbc:postgresql://course_pg_17:5432/postgres
+      DB_URL: jdbc:postgresql://postgres:5432/postgres
     depends_on:
-      - course_pg_17
+      - postgres
+      - kafka
+#      - rabbitmq
+      - mongodb
+
+  zookeeper:
+    image: bitnami/zookeeper:latest
+    container_name: zookeeper
+    ports:
+      - "2181:2181"
+    environment:
+      ALLOW_ANONYMOUS_LOGIN: "yes"
+
+  kafka:
+    image: bitnami/kafka:latest
+    container_name: kafka
+    ports:
+      - "9092:9092"
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      ALLOW_PLAINTEXT_LISTENER: "yes"
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092
+    depends_on:
+      - zookeeper
+
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+
+#  rabbitmq:
+#    image: rabbitmq:latest
+#    container_name: rabbitmq
+#    ports:
+#      - "5672:5672"
+#      - "15672:15672"  # Порт для RabbitMQ Management UI
+#    environment:
+#      RABBITMQ_DEFAULT_USER: guest
+#      RABBITMQ_DEFAULT_PASS: guest

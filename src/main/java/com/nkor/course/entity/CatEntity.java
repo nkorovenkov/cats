@@ -15,12 +15,12 @@ import lombok.ToString;
 @Setter
 @Entity
 @Table(name = "cats")
-public class CatEntity extends AbstractEntity{
+public class CatEntity extends AbstractEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
-    @Column(unique = true)
+    @Column(name = "name")
     private String name;
     @Column(name = "age")
     private int age;
