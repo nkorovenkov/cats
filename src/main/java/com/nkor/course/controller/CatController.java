@@ -1,6 +1,8 @@
 package com.nkor.course.controller;
 
 import com.nkor.course.dto.CatDto;
+import com.nkor.course.exception.response.AbstractBaseResponseMessage;
+import com.nkor.course.exception.response.ResponseHelper;
 import com.nkor.course.service.CatService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -26,28 +28,28 @@ public class CatController {
     private final CatService catService;
 
     @GetMapping("/all")
-    public List<CatDto> getAll() {
-        return catService.getAllDto();
+    public AbstractBaseResponseMessage<List<CatDto>> getAll() {
+        return ResponseHelper.success(catService.getAllDto());
     }
 
     @Operation(summary = "Создает нового котика и кладет в бд")
     @PostMapping("/create")
-    public CatDto create(@RequestBody CatDto catDto) {
-       return catService.create(catDto);
+    public AbstractBaseResponseMessage<CatDto> create(@RequestBody CatDto catDto) {
+       return ResponseHelper.success(catService.create(catDto));
     }
 
     @GetMapping("/getById/{id}")
-    public CatDto getById(@PathVariable Long id) {
-        return catService.getById(id);
+    public AbstractBaseResponseMessage<CatDto> getById(@PathVariable Long id) {
+        return ResponseHelper.success(catService.getById(id));
     }
 
     @DeleteMapping("/delete/{id}")
-    public CatDto delete(@PathVariable Long id) {
-        return catService.deleteById(id);
+    public AbstractBaseResponseMessage<CatDto> delete(@PathVariable Long id) {
+        return ResponseHelper.success(catService.deleteById(id));
     }
 
     @PutMapping("/update/{id}")
-    public CatDto update(@PathVariable Long id, @RequestBody CatDto catDto) {
-       return catService.update(id, catDto);
+    public AbstractBaseResponseMessage<CatDto> update(@PathVariable Long id, @RequestBody CatDto catDto) {
+       return ResponseHelper.success(catService.update(id, catDto));
     }
 }
